@@ -10,7 +10,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.servlet.http.HttpSession;
 import tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatKisi;
-import tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatMenu;
 import tr.gov.ptt.gr1tahsilatuyg.service.TahsilatKisiService;
 import tr.gov.ptt.gr1tahsilatuyg.util.JSFUtil;
 
@@ -30,13 +29,16 @@ public class TahsilatKisiBean {
     {
         TahsilatKisi t_kisi = kisiService.giriseYetkilimi(kisi);
         if (t_kisi != null) {
-            for (TahsilatMenu menu : t_kisi.getTahsilatMenuList()) {
+            this.kisi = t_kisi;
+            /*for (TahsilatMenu menu : t_kisi.getTahsilatMenuList()) {
                 System.out.println("Menüler: " + menu.getBaslik());
-            }
+            }*/
             
             HttpSession session = JSFUtil.getSession();
             session.setAttribute("username", t_kisi.getKullaniciAd());
-            System.out.println("Kullanıcı " + t_kisi.getKullaniciAd());
+            
+            session.setAttribute("kisi", kisi);
+            
             return "menu.xhtml?faces-redirect=true";
         } else {
             JSFUtil.hataMesajiEkle("Hatalı Giriş", "Kullanıcı adı yada şifre yanlış");

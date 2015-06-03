@@ -5,12 +5,19 @@
  */
 package tr.gov.ptt.gr1tahsilatuyg.bean;
 
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.servlet.http.HttpSession;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
 import org.primefaces.model.menu.MenuModel;
+import tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatKisi;
+import tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatMenu;
+import tr.gov.ptt.gr1tahsilatuyg.util.JSFUtil;
 
 @ManagedBean
 @SessionScoped
@@ -18,40 +25,37 @@ public class MenuBean {
 
     private final DefaultMenuModel simpleMenuModel = new DefaultMenuModel();
 
+    @ManagedProperty(value = "#{tahsilatKisiBean}")
+    private TahsilatKisiBean tahsilatKisiBean;
+
     public MenuBean() {
+
+    }
+
+    @PostConstruct
+    public void init() {
+        List<TahsilatMenu> menuListesi = tahsilatKisiBean.getKisi().getTahsilatMenuList();
 
         DefaultSubMenu subMenu = new DefaultSubMenu();
         subMenu.setLabel("Kullanıcı İşlemleri");
 
         DefaultMenuItem menuItem = new DefaultMenuItem();
-        menuItem.setValue("Tahsilat Giriş");
-        menuItem.setUrl("tahsilatGiris.xhtml");
-        subMenu.addElement(menuItem);
 
-        menuItem = new DefaultMenuItem();
-        menuItem.setValue("Tahsilat Sonuç");
-        menuItem.setUrl("tahsilatSonuc.xhtml");
-        subMenu.addElement(menuItem);
+        for (TahsilatMenu menu : menuListesi) {
+            menuItem = new DefaultMenuItem();
+            menuItem.setValue(menu.getBaslik());
+            menuItem.setUrl(menu.getLink() + ".xhtml?faces-redirect=true");
+            subMenu.addElement(menuItem);
+        }
 
-        simpleMenuModel.addElement(subMenu);
-
-        subMenu = new DefaultSubMenu();
-        subMenu.setLabel("Yönetici İşlemleri");
-
-        menuItem = new DefaultMenuItem();
-        menuItem.setValue("Tahsilat Yönetici");
-        menuItem.setUrl("tahsilatYonetici.xhtml");
-        subMenu.addElement(menuItem);
-        
-        menuItem = new DefaultMenuItem();
-        menuItem.setValue("Tahsilat Rapor");
-        menuItem.setUrl("tahsilatRapor.xhtml");
-        subMenu.addElement(menuItem);
-        
         simpleMenuModel.addElement(subMenu);
     }
 
     public MenuModel getSimpleMenuModel() {
         return simpleMenuModel;
+    }
+
+    public void setTahsilatKisiBean(TahsilatKisiBean tahsilatKisiBean) {
+        this.tahsilatKisiBean = tahsilatKisiBean;
     }
 }

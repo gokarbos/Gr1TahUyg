@@ -7,6 +7,7 @@ package tr.gov.ptt.gr1tahsilatuyg.facade;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatKisi;
 
@@ -31,10 +32,18 @@ public class TahsilatKisiFacade extends AbstractFacade<TahsilatKisi> {
     
     public TahsilatKisi giriseYetkilimi(TahsilatKisi p_kisi)
     {
-        TahsilatKisi t_kisi = (TahsilatKisi)em.createNamedQuery("TahsilatKisi.giriseYetkilimi")
+        TahsilatKisi t_kisi;
+        try
+        {
+        t_kisi = (TahsilatKisi)em.createNamedQuery("TahsilatKisi.giriseYetkilimi")
                 .setParameter("kullaniciAd",p_kisi.getKullaniciAd())
                 .setParameter("sifre",p_kisi.getSifre()).getSingleResult();
-                
+        
         return t_kisi;
+        }
+        catch(NoResultException exp)
+        {
+            return null;
+        }
     }
 }

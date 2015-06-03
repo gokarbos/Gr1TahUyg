@@ -7,12 +7,9 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
-
-        <ui:composition template="./anaTemplate.xhtml">
-
-            <ui:define name="content">
                 <h:form id="girisForm">
                     <p:panel header="Giriş Ekranı" >
+                        <p:messages/>
                         <p:panelGrid columns="3" >
                             <f:facet name="header">
                                 <p:outputLabel value="Giriş Bilgileri" />
@@ -34,9 +31,6 @@
                         </p:panelGrid>
                     </p:panel>
                 </h:form>
-            </ui:define>
-
-        </ui:composition>
 
     </body>
 </html>
