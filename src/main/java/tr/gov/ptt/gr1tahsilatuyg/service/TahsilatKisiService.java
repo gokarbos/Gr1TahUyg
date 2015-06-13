@@ -23,5 +23,9 @@ public class TahsilatKisiService {
     {
         return tahsilatKisiFacade.giriseYetkilimi(p_kisi);
     }
-
+    
+    public void kisiGuncelle(TahsilatKisi p_kisi)
+    {
+        tahsilatKisiFacade.edit(p_kisi);
+    }
 }

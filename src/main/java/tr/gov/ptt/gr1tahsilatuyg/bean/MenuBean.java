@@ -10,14 +10,11 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.servlet.http.HttpSession;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
 import org.primefaces.model.menu.MenuModel;
-import tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatKisi;
 import tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatMenu;
-import tr.gov.ptt.gr1tahsilatuyg.util.JSFUtil;
 
 @ManagedBean
 @SessionScoped
@@ -39,12 +36,12 @@ public class MenuBean {
         DefaultSubMenu subMenu = new DefaultSubMenu();
         subMenu.setLabel("Kullanıcı İşlemleri");
 
-        DefaultMenuItem menuItem = new DefaultMenuItem();
+        DefaultMenuItem menuItem;
 
         for (TahsilatMenu menu : menuListesi) {
             menuItem = new DefaultMenuItem();
             menuItem.setValue(menu.getBaslik());
-            menuItem.setUrl(menu.getLink() + ".xhtml?faces-redirect=true");
+            menuItem.setCommand(menu.getLink());
             subMenu.addElement(menuItem);
         }
 

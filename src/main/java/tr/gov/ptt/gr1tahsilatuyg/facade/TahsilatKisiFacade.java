@@ -46,4 +46,6 @@ public class TahsilatKisiFacade extends AbstractFacade<TahsilatKisi> {
             return null;
         }
     }
+    
+    
 }
