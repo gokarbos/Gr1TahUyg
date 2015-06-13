@@ -53,10 +53,10 @@ public class ThsTahsilat implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date islemTrh;
     @Column(name = "KISI_SIRA_NO")
-    private BigInteger kisiSiraNo;
+    private Integer kisiSiraNo;
     @Column(name = "TUTAR")
     private BigDecimal tutar;
-    @OneToMany(mappedBy = "tahsilat")
+    @OneToMany(mappedBy = "tahsilat", cascade=CascadeType.ALL)
     private List<ThsTahsilatDetay> thsTahsilatDetayList;
     @OneToMany(mappedBy = "tahsilat", cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private List<ThsTahsilatMuhasebe> thsTahsilatMuhasebeList;
@@ -68,6 +68,7 @@ public class ThsTahsilat implements Serializable {
     private TahsilatKurum kurum;
     
     public ThsTahsilat() {
+        kurum = new TahsilatKurum();
     }
 
     public ThsTahsilat(BigDecimal id) {
@@ -90,11 +91,11 @@ public class ThsTahsilat implements Serializable {
         this.islemTrh = islemTrh;
     }
 
-    public BigInteger getKisiSiraNo() {
+    public Integer getKisiSiraNo() {
         return kisiSiraNo;
     }
 
-    public void setKisiSiraNo(BigInteger kisiSiraNo) {
+    public void setKisiSiraNo(Integer kisiSiraNo) {
         this.kisiSiraNo = kisiSiraNo;
     }
 

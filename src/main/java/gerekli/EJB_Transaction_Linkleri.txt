@@ -1,0 +1,41 @@
+﻿EJB Transaction Lİnkleri
+-------------------------
+
+http://www.developerscrappad.com/435/java/java-ee/ejb-3-x-jpa-bean-managed-transaction-with-javax-ejb-usertransaction/
+
+http://www.javabeat.net/managing-transactions-in-ejb-3-0/
+
+http://docs.oracle.com/cd/E16439_01/doc.1013/e13981/servtran002.htm
+
+
+
+
+EJB Transaction Özellikleri
+---------------------------------
+
+EJB'de default transaction management uygulama sunucudadır.
+
+@TransactionManagement(value=TransactionManagementType.CONTAINER)
+
+commit rollback kendimiz yazmak istersek classın tepesine
+
+@TransactionManagement(value=TransactionManagementType.BEAN)
+
+annotation'ı ekliyoruz.
+
+
+CONTAINER MANAGED bir EJB'de,
+
+bir metodu ya hep ya hiç yoluyla çalıştırmak için,
+
+@TransactionAttribute
+public void kisiKaydet()
+{
+   // kisi kaydet
+   // kisinin cep telefonunu kaydet
+   // kisinin ev telefonunu kaydet
+}
+
+
+
+

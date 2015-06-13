@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatBorc;
 import tr.gov.ptt.gr1tahsilatuyg.service.TahsilatBorcService;
@@ -28,6 +29,9 @@ public class TahsilatBorcBean {
     private List<TahsilatBorc> borcListesi;
     
     private List<TahsilatBorc> seciliBorclar;
+    
+    @ManagedProperty(value = "#{tahsilatKisiBean}")
+    private TahsilatKisiBean kisiBean;
     
     private BigDecimal toplam;
     private BigDecimal paraUstu;
@@ -132,4 +136,16 @@ public class TahsilatBorcBean {
         
         return gelenDeger.substring(0, 2)+tempDeger;
     }
+    
+    public String seciliFaturalariOde()
+    {
+        tahsilatBorcService.seciliFaturalariOde(seciliBorclar, kisiBean.getKisi());
+        return "tahsilatSonuc.xhtml?faces-redirect=true";
+    }
+
+    public void setKisiBean(TahsilatKisiBean kisiBean) {
+        this.kisiBean = kisiBean;
+    }
+    
+    
 }

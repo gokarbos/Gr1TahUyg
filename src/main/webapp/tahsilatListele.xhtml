@@ -46,7 +46,7 @@
                         <p:column headerText="Tutar">
                             <p:outputLabel value="#{borc.faturaSonOdemeTrh}" >
                                 <f:convertDateTime pattern="dd/MM/yyyy" />
-                                
+
                             </p:outputLabel>
                         </p:column>
                         <p:column headerText="Tutar">
@@ -75,6 +75,14 @@
                             <p:outputLabel id="paraUstu" value="#{tahsilatBorcBean.paraUstu}" />
                         </p:column>
                     </p:panelGrid>
+                    <br/>
+                    <p:commandButton value="Öde" action="#{tahsilatBorcBean.seciliFaturalariOde()}" update="@form" icon="ui-icon-check" >
+                        <p:confirm header="Onay İsteği" message="Ödemek istiyor musunuz?" icon="ui-icon-circle-check" />
+                    </p:commandButton>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
                 </h:form>
             </ui:define>
         </ui:composition>
