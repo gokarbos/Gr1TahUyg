@@ -48,11 +48,10 @@ public class TahsilatKurum implements Serializable {
     @OneToMany(mappedBy = "kurum")
     private List<TahsilatBorc> tahsilatBorcList;
 
+    @OneToMany(mappedBy = "kurum")
+    private List<ThsTahsilat> tahsilatList;
+        
     public TahsilatKurum() {
-    }
-
-    public TahsilatKurum(BigDecimal id) {
-        this.id = id;
     }
 
     public BigDecimal getId() {
@@ -103,5 +102,14 @@ public class TahsilatKurum implements Serializable {
     public String toString() {
         return "tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatKurum[ id=" + id + " ]";
     }
+
+    public List<ThsTahsilat> getTahsilatList() {
+        return tahsilatList;
+    }
+
+    public void setTahsilatList(List<ThsTahsilat> tahsilatList) {
+        this.tahsilatList = tahsilatList;
+    }
         
+    
 }
