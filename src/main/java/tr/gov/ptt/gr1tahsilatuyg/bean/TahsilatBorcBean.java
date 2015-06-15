@@ -115,7 +115,7 @@ public class TahsilatBorcBean {
         paraUstu = new BigDecimal(0.0);
         
         for (TahsilatBorc borc : seciliBorclar) {
-            toplam = toplam.add(borc.getFaturaTutar());
+            toplam.add(borc.getFaturaTutar());
         }
         
         paraUstuHesapla();

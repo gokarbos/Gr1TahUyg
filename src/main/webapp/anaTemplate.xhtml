@@ -43,9 +43,12 @@
             </p:layoutUnit>
 
             <p:layoutUnit position="center">
-                <ui:insert name="content">Content</ui:insert>
+                <ui:insert name="content"> </ui:insert>
             </p:layoutUnit>
-
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
         </p:layout>
         <!--
         <div id="top">

@@ -51,8 +51,14 @@
                         </p:column>
                         <p:column headerText="Tutar">
                             <p:outputLabel value="#{borc.faturaTutar}" />
-                        </p:column>                        
+                        </p:column>                            
                     </p:dataTable>
+                    <p:commandButton value="Excel" ajax="false">
+                        <p:dataExporter type="xls" target="faturaTablo" fileName="OdenecekFaturalar" />
+                    </p:commandButton>
+                    <p:commandButton value="Pdf" ajax="false" icon="excel-icon">
+                        <p:dataExporter type="pdf" target="faturaTablo" fileName="OdenecekFaturalar" />
+                    </p:commandButton> 
                     <p:panelGrid columns="2">
                         <p:column>
                             <p:outputLabel value="Toplam:" />
@@ -79,10 +85,7 @@
                     <p:commandButton value="Öde" action="#{tahsilatBorcBean.seciliFaturalariOde()}" update="@form" icon="ui-icon-check" >
                         <p:confirm header="Onay İsteği" message="Ödemek istiyor musunuz?" icon="ui-icon-circle-check" />
                     </p:commandButton>
-                    <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                    </p:confirmDialog>
+
                 </h:form>
             </ui:define>
         </ui:composition>
