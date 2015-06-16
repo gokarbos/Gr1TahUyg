@@ -7,6 +7,7 @@ package tr.gov.ptt.gr1tahsilatuyg.bean;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -36,9 +37,9 @@ public class ChartBean {
         
         chartListe = new ArrayList<Object[]>();
         
-        doldurChart();
     }
     
+    @PostConstruct
     public void doldurChart()
     {
         chartListe = tahsilatBorcService.chartVerisiGetir();
