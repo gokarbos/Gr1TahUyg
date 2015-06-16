@@ -11,7 +11,10 @@
 
             <ui:define name="content">
                 <h:form id="chartForm">
-                    <p:chart type="pie" model="#{chart.pieChartModel}" style="width: 400px; height: 300px;"  />
+                    <p:chart id="grafik" type="pie" model="#{chart.pieChartModel}" style="width: 400px; height: 300px;"  />
+                    <p:poll interval="5" listener="#{chart.temizleGrafik()}" update="grafik grafik2" />
+                    <br/>
+                    <p:graphicImage id="grafik2" value="#{chart.jfreeChart}" />
                 </h:form>
             </ui:define>
 
